@@ -1,0 +1,3336 @@
+{
+	"info": {
+		"_postman_id": "253646c0-8220-46bf-9b1a-78812838c8d6",
+		"name": "business-api",
+		"description": "api para pei business",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "sign-up",
+			"item": [
+				{
+					"name": "validate-iban-for-payment",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b27604b-3caa-471d-8486-fc4db0eeaced",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "9376496a-13ee-40ed-bd5e-c639fbf093c1",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\": \"2-0688-0645\",\r\n\t\"iban\": \"CR87011610200021015955\",\r\n\t\"owner\": \"MONGE AGUILAR JUAN ANTONIO\",\r\n\t\"currency\": \"188\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/validate-iban-accounts",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"validate-iban-accounts"
+							]
+						},
+						"description": "valida que la informacion correspondiente a la cuenta iban ingresada sea valida"
+					},
+					"response": [
+						{
+							"name": "validate iban for payment",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"id\": \"2-0688-0645\",\r\n\t\"iban\": \"CR87011610200021015955\",\r\n\t\"owner\": \"MONGE AGUILAR JUAN ANTONIO\",\r\n\t\"currency\": \"188\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/validate-iban-accounts",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"validate-iban-accounts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "15"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 17:50:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true\n}"
+						},
+						{
+							"name": "validate-iban-for-payment-returning-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"id\": \"2-0688-0645\",\r\n\t\"iban\": \"CR87011610200021015955\",\r\n\t\"owner\": \"MONGE AGUILAR JUAN ANTONIO\",\r\n\t\"currency\": \"100\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/validate-iban-accounts",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"validate-iban-accounts"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "113"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 18:34:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Cuenta en moneda distinta|Recuerda que en este campo debes ingresar tu cuenta de Dolares.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get-legal-person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0719779a-93c2-483b-947f-fa8c299bee96",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/sign-up/legal-person/3101675917",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"legal-person",
+								"3101675917"
+							]
+						},
+						"description": "Obtener información sobre el Id de la persona legal ingresada"
+					},
+					"response": [
+						{
+							"name": "get-legal-person-returning-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5002/sign-up/legal-person/1111111",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"sign-up",
+										"legal-person",
+										"1111111"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "56"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 20:11:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"La identificación es inválida.\"\n    }\n}"
+						},
+						{
+							"name": "get-legal-person",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5002/sign-up/legal-person/3101675917",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"sign-up",
+										"legal-person",
+										"3101675917"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "98"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 20:08:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"names\": \"PINILLA Y GOLONDRINAS NUMERO TREINTA Y UNO SOCIEDAD ANONIMA \",\n        \"surnames\": \" \"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get-natural-person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a6b6f816-a43f-44c5-9c6b-e8bf6a230216",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/sign-up/natural-person/303040962",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"natural-person",
+								"303040962"
+							]
+						},
+						"description": "Obtener información sobre el Id de la persona física ingresada"
+					},
+					"response": [
+						{
+							"name": "get-natural-person",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/natural-person/303040962",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"natural-person",
+										"303040962"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "59"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:15:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"names\": \"CARMEN \",\n        \"surnames\": \"GONZALEZ BRENES\"\n    }\n}"
+						},
+						{
+							"name": "get-natural-person-returning-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/natural-person/111111111",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"natural-person",
+										"111111111"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "56"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:18:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"La identificación es inválida.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get-average-billings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "56229908-9b6c-4fb5-9ae9-9a3a45d681b0",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/sign-up/average-billing/true",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"average-billing",
+								"true"
+							]
+						},
+						"description": "obtiene la lista de promedios de facturación"
+					},
+					"response": [
+						{
+							"name": "get-average-billings",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/average-billing/true",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"average-billing",
+										"true"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "379"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 20:26:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": [\n        {\n            \"Id\": 1,\n            \"Code\": null,\n            \"Description\": \"Menos de 500 mil colones\"\n        },\n        {\n            \"Id\": 2,\n            \"Code\": null,\n            \"Description\": \"De 500 mil a 2 millones de colones\"\n        },\n        {\n            \"Id\": 10002,\n            \"Code\": null,\n            \"Description\": \"De 2 Millones a 4.99 Millones de colones\"\n        },\n        {\n            \"Id\": 10003,\n            \"Code\": null,\n            \"Description\": \"De 5 Millones a 10 Millones de colones\"\n        },\n        {\n            \"Id\": 10004,\n            \"Code\": null,\n            \"Description\": \"Mas de 10 Millones de Colones\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get-legal-entity",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca06267f-cf53-46b6-9ba5-57f8d2ae76ce",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_base}}/sign-up/legal-entity/3101090173",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"legal-entity",
+								"3101090173"
+							]
+						},
+						"description": "Obtiene el nombre de la razón social de la cédula jurídica"
+					},
+					"response": [
+						{
+							"name": "get-legal-entity",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/legal-entity/3101090173",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"legal-entity",
+										"3101090173"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "80"
+								},
+								{
+									"key": "accept-ranges",
+									"value": "bytes"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 20:26:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"name\": \"COMERCIALIZADORA Y EXPORTADORA DE GUAYABO SOCIEDAD ANONIMA\"\n    }\n}"
+						},
+						{
+							"name": "get-legal-entity-returning-error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/legal-entity/55555",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"legal-entity",
+										"55555"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "56"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 20:27:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"La identificación es inválida.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "generate-onfido-applicant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3330e10d-ab79-43d4-9b8c-25bf0a34fc3a",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Pedro Rafael\",\r\n    \"lastName\": \"Meneses Bello\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/create-onfido-aplicant",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"create-onfido-aplicant"
+							]
+						},
+						"description": "Ingresa una aplicación en la plataforma onfido"
+					},
+					"response": [
+						{
+							"name": "generate-onfido-applicant",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Pedro Rafael\",\r\n    \"lastName\": \"Meneses Bello\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/create-onfido-aplicant",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"create-onfido-aplicant"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "291"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:45:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"id\": \"3150abf4-995c-4233-bfe1-1d25cfac13e3\",\n        \"createdAt\": \"2020-07-29T21:45:39Z\",\n        \"sandbox\": true,\n        \"firstName\": \"Pedro Rafael\",\n        \"lastName\": \"Meneses Bello\",\n        \"email\": null,\n        \"dob\": null,\n        \"deleteAt\": null,\n        \"href\": \"/v3/applicants/3150abf4-995c-4233-bfe1-1d25cfac13e3\",\n        \"address\": null,\n        \"idNumbers\": []\n    }\n}"
+						},
+						{
+							"name": "generate-onfido-applicant-without-all-params-required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"firstName\": \"Pedro Rafael\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/create-onfido-aplicant",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"create-onfido-aplicant"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "44"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:46:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"lastName es required\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "generate-onfido-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1dc2d3d1-2e96-4322-9a4f-83b139ed7a65",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"applicationID\": \"2aa3bff2-a8f7-4801-ab7b-31fe14bc9d2d\",\r\n    \"referrerPattern\": \"http://localhost:3000/\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/generate-onfido-token",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"generate-onfido-token"
+							]
+						},
+						"description": "Obtiene un token que sirve para enviar en las solicitudes de Onfido"
+					},
+					"response": [
+						{
+							"name": "generate-onfido-token-without-all-params-requiered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"applicationID\": \"2aa3bff2-a8f7-4801-ab7b-31fe14bc9d2d\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5002/sign-up/generate-onfido-token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"sign-up",
+										"generate-onfido-token"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "51"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:50:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"referrerPattern es required\"\n    }\n}"
+						},
+						{
+							"name": "generate-onfido-token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"applicationID\": \"2aa3bff2-a8f7-4801-ab7b-31fe14bc9d2d\",\r\n    \"referrerPattern\": \"http://localhost:3000/\"\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:5002/sign-up/generate-onfido-token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"sign-up",
+										"generate-onfido-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "594"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:49:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": \"eyJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjoibnB6V3J2TndkQ25LK1FmcDcwK2tRdGpCTWd1ZVdka21sbW54cjFvdlpmVjJ1aUV1YWVFVDZaRDNqaTdwXG5FZzBtU3ExSE9uR3lLeCt0WVArbzZyRU1PcWZwbTJNbFVBMnIxK3ZhSVZabVNxST1cbiIsInV1aWQiOiJOcVlySDFZRWp5SSIsImV4cCI6MTU5NjA2NDc3MSwidXJscyI6eyJvbmZpZG9fYXBpX3VybCI6Imh0dHBzOi8vYXBpLm9uZmlkby5jb20iLCJ0ZWxlcGhvbnlfdXJsIjoiaHR0cHM6Ly90ZWxlcGhvbnkub25maWRvLmNvbSIsImRldGVjdF9kb2N1bWVudF91cmwiOiJodHRwczovL3Nkay5vbmZpZG8uY29tIiwic3luY191cmwiOiJodHRwczovL3N5bmMub25maWRvLmNvbSIsImhvc3RlZF9zZGtfdXJsIjoiaHR0cHM6Ly9pZC5vbmZpZG8uY29tIn19.rFObXTk-3l-8R8LD1IGAyY7yLyzN4SpuEcaguLCNUhY\"\n}"
+						}
+					]
+				},
+				{
+					"name": "create-onfido-check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e1ecd5d7-882f-4dbc-8441-e5724fcaf310",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"applicantId\": \"2aa3bff2-a8f7-4801-ab7b-31fe14bc9d2d\",\r\n    \"reportNames\": [\"document\"]\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/create-onfido-check",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"create-onfido-check"
+							]
+						},
+						"description": "Crea un check para una aplicación onfido especifica creada anteriormente"
+					},
+					"response": [
+						{
+							"name": "create-onfido-check-without-all-parameters-required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"applicantId\": \"2aa3bff2-a8f7-4801-ab7b-31fe14bc9d2d\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/create-onfido-check",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"create-onfido-check"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:58:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"reportNames es required\"\n    }\n}"
+						},
+						{
+							"name": "create-onfido-check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"applicantId\": \"2aa3bff2-a8f7-4801-ab7b-31fe14bc9d2d\",\r\n    \"reportNames\": [\"document\"]\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/create-onfido-check",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"create-onfido-check"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "532"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 21:57:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": {\n            \"name\": \"OnfidoApiError\",\n            \"responseBody\": {\n                \"error\": {\n                    \"type\": \"validation_error\",\n                    \"message\": \"There was a validation error on this request\",\n                    \"fields\": {\n                        \"applicant\": [\n                            \"You must provide the necessary documents to be able to proceed with this check. Please refer to our documentation for supported documents.\"\n                        ]\n                    }\n                }\n            },\n            \"statusCode\": 422,\n            \"type\": \"validation_error\",\n            \"fields\": {\n                \"applicant\": [\n                    \"You must provide the necessary documents to be able to proceed with this check. Please refer to our documentation for supported documents.\"\n                ]\n            }\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "create-pei-request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a4fcc4b6-f4c5-49a5-858f-9322fb849f79",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numberId\": \"001-200994-0037Y\",\r\n    \"firstName\": \"Pedro\",\r\n    \"secondName\": \"Rafael\",\r\n    \"firstSurName\": \"Meneses\",\r\n    \"secondSurName\": \"Bello\",\r\n    \"alternativeName\": \"Comercio de pedro\",\r\n    \"averageBilling\": 2,\r\n    \"bussinesName\": \"Comercio de pedro\",\r\n    \"idF_comc_ActivityEconomic\": 1,\r\n    \"legalID\": \"3-102-332140\",\r\n    \"idF_comc_IdType\": 1,\r\n    \"economicActivityId\": 1,\r\n    \"streetAddress\": \"Direccion de prueba\",\r\n    \"province\": 0,\r\n    \"canton\": 0,\r\n    \"district\": 0,\r\n    \"accountForeignCurrency\": \"CR12312132127\",\r\n    \"accountNationalCurrency\": \"\",\r\n    \"detailsTermConditions\": \"\",\r\n    \"requestType\": 1,\r\n    \"applicantID\": \"ddf55566699-fgggggg1456699\",\r\n    \"idType\": 0,\r\n    \"phoneNumber\": \"+50512345678\",\r\n    \"email\": \"prueba@prueba.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/create-pei-request",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"create-pei-request"
+							]
+						},
+						"description": "Crea la solicitud de ingreso en pei business"
+					},
+					"response": [
+						{
+							"name": "create-pei-request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"numberId\": \"001-200994-0037Y\",\r\n      \"firstName\": \"Pedro\",\r\n      \"secondName\": \"Rafael\",\r\n      \"firstSurName\": \"Meneses\",\r\n      \"secondSurName\": \"Bello\",\r\n      \"alternativeName\": \"Comercio de pedro\",\r\n      \"averageBilling\": 2,\r\n      \"bussinesName\": \"Comercio de pedro\",\r\n      \"idF_comc_ActivityEconomic\": 1,\r\n      \"legalID\": \"3-102-332140\",\r\n      \"idF_comc_IdType\": 1,\r\n      \"economicActivityId\": 1,\r\n      \"streetAddress\": \"Direccion de prueba\",\r\n      \"province\": 0,\r\n      \"canton\": 0,\r\n      \"district\": 0,\r\n      \"accountForeignCurrency\": \"CR12312132127\",\r\n      \"accountNationalCurrency\": \"\",\r\n      \"detailsTermConditions\": \"\",\r\n      \"requestType\": 1,\r\n      \"applicantID\": \"ddf55566699-fgggggg1456699\",\r\n      \"idType\": 0,\r\n      \"phoneNumber\": \"+50512345678\",\r\n      \"email\": \"prueba@prueba.com\"\r\n\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/create-pei-request",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"create-pei-request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 22:15:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"IdT_cmat_SolicitudPeiBusiness\": 27\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "pei-request-result",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7fe220fe-a92c-4dbf-839c-76fada6c22e4",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idBusiness\": \"30\",\r\n    \"email\": \"pedro.meneses@credit-force.com\",\r\n    \"status\": \"approved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/result-for-pei-request",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"result-for-pei-request"
+							]
+						},
+						"description": "De acuerdo al estado recibido se procede con aprobar la solicitud Pei, rechazarla o denegarla, en caso de que la solicitud sea denegada el usuario podrá intentar crear otra cuenta con la misma información"
+					},
+					"response": [
+						{
+							"name": "pei-request-result-set-status-denied",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idBusiness\": \"30\",\r\n    \"email\": \"pedro.meneses@credit-force.com\",\r\n    \"status\": \"denied\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/result-for-pei-request",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"result-for-pei-request"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "65"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 22:39:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"the user was already confirmed\",\n        \"status\": 4\n    }\n}"
+						},
+						{
+							"name": "pei-request-result-set-status-rejected",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idBusiness\": \"30\",\r\n    \"email\": \"pedro.meneses@credit-force.com\",\r\n    \"status\": \"rejected\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/result-for-pei-request",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"result-for-pei-request"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "65"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 22:38:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"the user was already confirmed\",\n        \"status\": 4\n    }\n}"
+						},
+						{
+							"name": "pei-request-result-set-status-approved",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idBusiness\": \"30\",\r\n    \"email\": \"pedro.meneses@credit-force.com\",\r\n    \"status\": \"approved\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/result-for-pei-request",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"result-for-pei-request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "57"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 22:35:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"message\": \"sucessful transaction\",\n        \"status\": 7\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "accept-term-and-conditions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e483fed5-dd99-48ea-b76e-eb05504dbb98",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"pedro.meneses@credit-force.com\",\r\n    \"keyValue\": [\r\n        {\r\n            \"key\": \"ip\",\r\n            \"value\": \"192.168.1.2\"\r\n        }\r\n    ]   \r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base_local}}/sign-up/accept-terms-and-conditions",
+							"host": [
+								"{{url_base_local}}"
+							],
+							"path": [
+								"sign-up",
+								"accept-terms-and-conditions"
+							]
+						},
+						"description": "Se utiliza para aceptar los términos y condiciones, el cual recibe un objeto que puede un arreglo de información, que bien podría ser la fecha y hora, el ip, la zona horaria etc."
+					},
+					"response": [
+						{
+							"name": "accept-term-and-conditions",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"pedro.meneses@credit-force.com\",\r\n    \"keyValue\": [\r\n        {\r\n            \"key\": \"ip\",\r\n            \"value\": \"192.168.1.2\"\r\n        }\r\n    ]   \r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/accept-terms-and-conditions",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"accept-terms-and-conditions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "23"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jul 2020 23:12:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"status\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "set-phone-number-as-verified",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1ed2d04-e205-4f04-b8d9-2d887866da7c",
+								"exec": [
+									"pm.test(\"Success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('result');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Error\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.any.keys('error');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro.meneses@credit-force.com\"\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/set-phone-number-verified",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"set-phone-number-verified"
+							]
+						},
+						"description": "se actualiza en aws cognito el numero de telefono como verificado para el email proporcionado"
+					},
+					"response": [
+						{
+							"name": "set-phone-number-as-verified-with-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"pedro.meneses@credit-forcee.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/set-phone-number-verified",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"set-phone-number-verified"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "42"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:29:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"the user not exist\"\n    }\n}"
+						},
+						{
+							"name": "set-phone-number-as-verified",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"pedro.meneses@credit-force.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base_local}}/sign-up/set-phone-number-verified",
+									"host": [
+										"{{url_base_local}}"
+									],
+									"path": [
+										"sign-up",
+										"set-phone-number-verified"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "15"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:10:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "set-user-name",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pedro.meneses@credit-force.com\",\r\n    \"name\": \"Rafael\"\r\n}\r\n    ",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/sign-up/set-user-name",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"sign-up",
+								"set-user-name"
+							]
+						},
+						"description": "Se actualiza en aws cognito el nombre de usuario para la cuenta de email proporcionada"
+					},
+					"response": [
+						{
+							"name": "set-user-name-with-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"pedro.meneses@credit-forceeee.com\",\r\n    \"name\": \"Rafael\"\r\n}\r\n    "
+								},
+								"url": {
+									"raw": "{{url_base}}/sign-up/set-user-name",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"sign-up",
+										"set-user-name"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "42"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:35:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"the user not exist\"\n    }\n}"
+						},
+						{
+							"name": "set-user-name",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"pedro.meneses@credit-force.com\",\r\n    \"name\": \"Rafael\"\r\n}\r\n    "
+								},
+								"url": {
+									"raw": "{{url_base}}/sign-up/set-user-name",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"sign-up",
+										"set-user-name"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "15"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:33:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": true\n}"
+						}
+					]
+				}
+			],
+			"description": "End points for sign up",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "phone",
+			"item": [
+				{
+					"name": "validate-phone-aws",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phoneNumber\": \"+50588689420\",\r\n    \"email\": \"pedro.meneses@credit-force.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url_base}}/phone/validate-phone-aws",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"phone",
+								"validate-phone-aws"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "validate-phone-aws-validate-phone-and-email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\": \"+50588689420\",\r\n    \"email\": \"pedro.meneses@credit-force.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/validate-phone-aws",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"validate-phone-aws"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "56"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:55:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"email already created\",\n        \"status\": 2\n    }\n}"
+						},
+						{
+							"name": "validate-phone-aws-phone-exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\": \"+50577825484\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/validate-phone-aws",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"validate-phone-aws"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "57"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:54:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"number already created\",\n        \"status\": 1\n    }\n}"
+						},
+						{
+							"name": "validate-phone-aws-phone-not-exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phoneNumber\": \"+50588689420\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/validate-phone-aws",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"validate-phone-aws"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "16"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 16:53:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "send-confirmation-sms",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"number\": \"+50577825484\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/phone/send-confirmation-sms",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"phone",
+								"send-confirmation-sms"
+							]
+						},
+						"description": "envia un sms de confirmacion a un numero de telefono proporcionado"
+					},
+					"response": [
+						{
+							"name": "send-confirmation-sms-with-twilio-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"number\": \"+5057782548499999999999\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/send-confirmation-sms",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"send-confirmation-sms"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "103"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 17:26:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": {\n            \"status\": 400,\n            \"code\": 60200,\n            \"moreInfo\": \"https://www.twilio.com/docs/errors/60200\"\n        }\n    }\n}"
+						},
+						{
+							"name": "send-confirmation-sms-without-all-params-required",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/send-confirmation-sms",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"send-confirmation-sms"
+									]
+								}
+							},
+							"status": "Precondition Failed",
+							"code": 412,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "42"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 17:25:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"number is required\"\n    }\n}"
+						},
+						{
+							"name": "send-confirmation-sms",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"number\": \"+50577825484\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/send-confirmation-sms",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"send-confirmation-sms"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 17:24:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"result\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "verify-sms-code",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{authorization}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"887938\",\r\n    \"number\": \"+50577825484\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url_base}}/phone/verify-sms-code",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"phone",
+								"verify-sms-code"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "verify-sms-code-with-twilio-error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"887938333\",\r\n    \"number\": \"+50577825484\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/verify-sms-code",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"verify-sms-code"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "103"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 17:30:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": {\n            \"status\": 404,\n            \"code\": 20404,\n            \"moreInfo\": \"https://www.twilio.com/docs/errors/20404\"\n        }\n    }\n}"
+						},
+						{
+							"name": "verify-sms-code",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"887938\",\r\n    \"number\": \"+50577825484\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/verify-sms-code",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"verify-sms-code"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 17:30:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"result\": true\n    }\n}"
+						},
+						{
+							"name": "verify-sms-code-and-set-number-verified",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorization}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"449593\",\r\n    \"number\": \"+50577825484\",\r\n    \"email\": \"pedro.meneses@credit-force.com\"\r\n}"
+								},
+								"url": {
+									"raw": "{{url_base}}/phone/verify-sms-code",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"phone",
+										"verify-sms-code"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "OPTIONS, GET, PUT, POST, DELETE"
+								},
+								{
+									"key": "vary",
+									"value": "origin"
+								},
+								{
+									"key": "access-control-allow-credentials",
+									"value": "true"
+								},
+								{
+									"key": "access-control-expose-headers",
+									"value": "WWW-Authenticate,Server-Authorization"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache"
+								},
+								{
+									"key": "content-length",
+									"value": "26"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jul 2020 17:31:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"result\": {\n        \"result\": true\n    }\n}"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
